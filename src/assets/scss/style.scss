@@ -5,3 +5,11 @@
 @import 'common.scss';
 @import 'icon.scss';
 @import 'frame.scss';
+
+// global
+.loading-wrapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
