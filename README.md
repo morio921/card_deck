@@ -109,10 +109,21 @@ Use ``` docker-compose run app npm install package-name ```. Do NOT use ```npm i
 
 
 ### functionalities in project perspective
-
 **Router 1** (`/deck/new`)
   - action: *$addNewDeck* 
       call api ([1]https://deckofcardsapi.com/api/deck/new/) and create new deck
   - action: *$addToPile* 
-      call api (https://deckofcardsapi.com/api/deck/<<deck_id>>/draw/?count=52) to prepare all cards working
-      call api ([2]https://deckofcardsapi.com/api/deck/<<deck_id>>/pile/<<pile_name>>/add/?cards=AS,2S) to prepare all cards working
+      call api (https://deckofcardsapi.com/api/deck/:deck_id/draw/?count=52) to prepare all cards working
+      call api ([2]https://deckofcardsapi.com/api/deck/:deck_id/pile/:pile_name/add/?cards=AS,2S) to prepare all cards working
+
+**Router 2** (`/deck/:id`)
+  - action: *$getPile*
+      call api (https://deckofcardsapi.com/api/deck/:deck_id/pile/:pile_name/list/) to load cards to be saved in router 1
+
+### Order cards and fetch Full House combinations
+  - function to order cards according to rotation card and playing rule (Strongest to Weakest)
+    [https://github.com/kevin-dev725/deck-of-cards/blob/master/src/store/actions.js#L29]
+  
+  - function to fetch Full House combinations with card codes array ['2H', '2D', '2C', '2S', '3H', '3D', '3C']
+    [https://github.com/kevin-dev725/deck-of-cards/blob/master/src/store/actions.js#L53]
+
