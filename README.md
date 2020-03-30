@@ -78,3 +78,41 @@ npm start
 ### Code style guideline
 
 Code style should follow Vue style guide https://vuejs.org/v2/style-guide. We use ESLint with the official Vue plugin to help with code linting during development. When in doubt, check the style guide.
+
+### File/directory naming
+
+#### `src/`
+
+Currently there's a mix in file naming, but the following general rules should apply to anything under `src/`:
+
+- `camelCase` for files that export a function. For example
+
+    // New.vue
+    export default function createListView (type) {}
+
+- `PascalCase` for components / view classes (as per Vue style guide). For example `CardView.vue`
+
+    // commonRoutes.js (function)
+    export default [
+      {
+    ...
+
+- `snake_case` for files under `src/assets/`. For legacy reasons some files have `kebab-case` but we should stick to `snake_case` when we can.
+
+#### Anything under the project root
+
+No naming convention, it depends on the file's usage, for example `docker-compose.yml`, `README.md`...
+
+
+### Guideline for updating packages
+Use ``` docker-compose run app npm install package-name ```. Do NOT use ```npm install``` directly because that might add our local-specific stuffs in *package-lock.json*. If you do, then don't commit *package-lock.json*
+
+
+### functionalities in project perspective
+
+**Router 1** (`/deck/new`)
+  - action: *$addNewDeck* 
+      call api ([1]https://deckofcardsapi.com/api/deck/new/) and create new deck
+  - action: *$addToPile* 
+      call api (https://deckofcardsapi.com/api/deck/<<deck_id>>/draw/?count=52) to prepare all cards working
+      call api ([2]https://deckofcardsapi.com/api/deck/<<deck_id>>/pile/<<pile_name>>/add/?cards=AS,2S) to prepare all cards working
