@@ -123,7 +123,14 @@ Use ``` docker-compose run app npm install package-name ```. Do NOT use ```npm i
 ### Order cards and fetch Full House combinations
   - function to order cards according to rotation card and playing rule (Strongest to Weakest)
     [https://github.com/kevin-dev725/deck-of-cards/blob/master/src/store/actions.js#L29]
-  
+
+    Simplely compare two codes in terms of their values and suits and swap(sort) each other
+    1. calculate the relative integers of value and suit based on rotation value and suit
+    2. Queue the cards based on the suit first because card suits take precedence over card values
+    3. Queue the cards based on the value next in the case that suits are same.
+
   - function to fetch Full House combinations with card codes array ['2H', '2D', '2C', '2S', '3H', '3D', '3C']
     [https://github.com/kevin-dev725/deck-of-cards/blob/master/src/store/actions.js#L53]
 
+    1. calculated possible combination arraies by using deep dive/recursive function
+    2. fetch only arraies matched with Full House rule
