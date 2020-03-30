@@ -8,7 +8,7 @@
       >
         <span>{{ itemsIndex + 1 | convertToRoman }}.</span>
         <span>
-          {{ items.join() }}
+          {{ items.join().replace(/0\/*/g, '10') }}
         </span>
       </div>
     </div>

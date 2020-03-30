@@ -66,7 +66,7 @@ export default {
 
       // set highCard data
       if (val.length > 0) {
-        this.highCard = val[0].code
+        this.highCard = val[0].code.replace(/0\/*/g, '10')
       } else {
         this.highCard = 'None'
       }
@@ -106,10 +106,7 @@ export default {
   flex-direction: column;
   align-items: center;
   padding: 48px;
-
-  .loading-spinner {
-    height: 100vh
-  }
+  background-color: #dff4f7;
 
   &-content {
     min-height: 70%;
