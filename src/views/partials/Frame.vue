@@ -1,12 +1,7 @@
 <template>
   <div class="page-frame">
     <header-component></header-component>
-    <div class="frame-content">
-      <side-nav></side-nav>
-      <main @click="onHideMenuClick">
-        <router-view></router-view>
-      </main>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
