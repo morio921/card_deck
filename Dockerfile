@@ -1,13 +1,3 @@
-FROM node
+FROM node:10-alpine
 
-MAINTAINER nicejade
-
-COPY . /app
-
-WORKDIR /app
-
-RUN npm install
-
-EXPOSE 8080
-
-CMD npm start
+RUN yarn global add @vue/cli
