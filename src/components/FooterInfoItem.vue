@@ -1,7 +1,17 @@
 <template>
   <div class="footer-info-item">
-    Footer Info Skeleton
-    //TODO: Footer Info content
+    <span>{{ title }} : {{ info }} </span>
+    <div class="footer-info-item-list">
+      <div
+        v-for="(items, itemsIndex) in fullHouseCombinations"
+        :key="`items-${itemsIndex + 1}`"
+      >
+        <span>{{ itemsIndex + 1 | convertToRoman }}.</span>
+        <span>
+          {{ items.join() }}
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,5 +40,42 @@ export default {
   display: flex;
   padding: 10px 0;
   font-family: Arial;
+
+  > span:first-child {
+    color: #343434;
+    font-size: 32px;
+    margin-right: 5px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  > span:nth-child(2n) {
+      font-size: 32px;
+      color: #343434;
+  }
+
+  &-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.full-house {
+    flex-direction: column;
+
+    .footer-info-item-list {
+      margin-top: 10px;
+      > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        font-size: 21px;
+
+        > span:first-child {
+          margin-right: 20px;
+        }
+      }
+    }
+  }
 }
 </style>

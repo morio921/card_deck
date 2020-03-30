@@ -71,17 +71,6 @@ export default {
         this.highCard = 'None'
       }
     }
-  },
-
-  mounted () {
-    const {
-      rotationCard,
-      pileName,
-      pileAdded,
-      $route: {
-        params: { id }
-      }
-    } = this
   }
 }
 </script>

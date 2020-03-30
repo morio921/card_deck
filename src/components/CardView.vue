@@ -1,7 +1,13 @@
 <template>
   <div class="card-view">
-    Card View Skeleton
-    //TODO: card view content
+    <div class="card-view__top">
+      <span>{{ value | filterValue }}</span>
+      <img :src="suit | getImageUrl" :alt="suit" />
+    </div>
+    <div class="card-view__bottom">
+      <img :src="suit | getImageUrl" :alt="suit" />
+      <span>{{ value | filterValue }}</span>
+    </div>
   </div>
 </template>
 
@@ -31,7 +37,42 @@ export default {
   box-shadow: 3px 3px 10px 0 #826693;
   background-color: #ffffff;
   font-family: Arial;
+
+  span {
+    color: #343434;
+    font-size: 32px;
+    font-weight: bold;
+  }
+  img {
+    width: 24px;
+    height: 30px;
+  }
+
+  &__top {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    > span, img {
+      -ms-transform: rotate(0deg); /* IE 9 */
+      transform: rotate(0deg);
+    }
+    > span {
+      margin-right: 5px;
+    }
+  }
+  &__bottom {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    display: flex;
+    > span, img {
+      -ms-transform: rotate(180deg); /* IE 9 */
+      transform: rotate(180deg);
+    }
+    > img {
+      margin-right: 5px;
+    }
+  }
 }
 </style>
-
-
