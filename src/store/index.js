@@ -10,7 +10,10 @@ Vue.use(Vuex)
 const state = {
   userId: '',
   userInfo: null,
-  menuList: []
+  menuList: [],
+  pileName: '',
+  pileAdded: false,
+  rotationCard: ''
 }
 
 const debug = process.env.NODE_ENV !== 'production'
@@ -23,3 +26,4 @@ export default new Vuex.Store({
   strict: debug,
   plugins: debug ? [createLogger()] : []
 })
+

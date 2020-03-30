@@ -14,5 +14,17 @@ export default {
     **/
     // $utils.setStorage(STORAGE_KEY, menuList)
     state.menuList = menuList
+  },
+
+  $setPileName(state, pileName) {
+    state.pileName = pileName
+  },
+
+  $setPileAdded(state, success) {
+    state.pileAdded = success
+  },
+
+  $setRotationCard(state, code) {
+    state.rotationCard = code
   }
 }

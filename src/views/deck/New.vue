@@ -1,5 +1,8 @@
 <template>
-  <div class="new">
+  <div v-if="loading" class="loading-wrapper">
+    <b-spinner variant="success" label="Spinning"></b-spinner>
+  </div>
+  <div v-else class="new">
     <div class="new-content">
       <b-row>
         <b-col v-for="num in firstQueue" :key="num + 1">
@@ -50,9 +53,44 @@ export default {
       loading: false
     }
   },
+
   mounted () {
     this.firstQueue = c.FIRST_QUEUE
     this.secondQueue = c.SECOND_QUEUE
+  },
+
+  methods: {
+    async onSubmit() {
+      console.log('on submit: ', this.codes, this.rotationCode)
+      const { codes, rotationCode } = this
+
+      if (codes.length === 0) {  // card input validation
+        alert('Please input one card at least!')
+        return
+      } else if (rotationCode === '') { // rotation card input validation
+        alert('Please input rotation card!')
+      } else {
+        // loading
+        this.loading = true
+
+        // request create deck
+        const createdDeck = await this.$addNewDeck()
+        if (createdDeck.success) {
+          // replace 10H with 0H that could be recognized by Deck Card API
+          const replacedCodes = codes.map((code) => (code.replace(/10\/*/g, '0')))
+
+          // request addToPiles
+          const deckId = await this.$addToPile({
+            codes: replacedCodes,
+            rotationCode,
+            deckId: createdDeck.deck_id
+          })
+          if (deckId) {
+            this.$router.push({ path: `/deck/${deckId}` })
+          }
+        }
+      }
+    }
   }
 }
 </script>
