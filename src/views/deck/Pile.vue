@@ -70,6 +70,31 @@ export default {
       } else {
         this.highCard = 'None'
       }
+    },
+    fullHouseCards(val) {
+      if (val.length > 0) {
+        this.fullHouse = val
+        this.fullHouseStatus = val.length
+      } else {
+        this.fullHouseStatus = 'None'
+      }
+    }
+  },
+
+  mounted () {
+    const {
+      rotationCard,
+      pileName,
+      pileAdded,
+      $route: {
+        params: { id }
+      }
+    } = this
+
+    // check if deck and pile are created
+    if (pileAdded) {
+      this.rotationCode = rotationCard
+      this.$getPile({ deckId: id, pileName })
     }
   }
 }
@@ -81,5 +106,26 @@ export default {
   flex-direction: column;
   align-items: center;
   padding: 48px;
+
+  .loading-spinner {
+    height: 100vh
+  }
+
+  &-content {
+    min-height: 70%;
+    border: solid 2px #979797;
+    background-color: #d8d8d8;
+    padding: 24px 48px;
+
+    &-item {
+      margin: 10px 0;
+    }
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+  }
 }
 </style>

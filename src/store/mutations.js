@@ -26,5 +26,17 @@ export default {
 
   $setRotationCard(state, code) {
     state.rotationCard = code
+  },
+
+  $setOrderedCards(state, cards) {
+    state.orderedCards = cards
+  },
+
+  $setFullHouseCards(state, fullHouse) {
+    state.fullHouseCards = fullHouse
+  },
+
+  $setPileLoaded(state, success) {
+    state.pileLoaded = success
   }
 }

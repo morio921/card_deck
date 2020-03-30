@@ -39,5 +39,41 @@ export default {
       commit('$setRotationCard', rotationCode)
       return res.deck_id
     }
+  },
+
+  async $getPile({ commit, state }, { deckId, pileName }) {
+    const pile = await $apis.deck.getPile(deckId, pileName)
+    console.log('pile: ', pile)
+    commit('$setOrderedCards', pile.piles[pileName].cards)
+
+    const codes = pile.piles[pileName].cards.map((card) => {
+      return card.code
+    })
+
+    // check Full House
+    // get possible 5 combination arrays
+    let fullHouse = []
+    let fullHouseCandidate = []
+    const getFullHouseCandidates = (startIndex = 0) => {
+      for (let i = startIndex; i < codes.length; i++) {
+        fullHouseCandidate.push(codes[i])
+        if (fullHouseCandidate.length === 5) {
+          if ($utils.isFullHouse(fullHouseCandidate)) {
+
+            fullHouse.push([...fullHouseCandidate])
+          }
+          fullHouseCandidate.pop()
+        } else {
+          getFullHouseCandidates(i + 1)
+          fullHouseCandidate.pop()
+        }
+      }
+    }
+    getFullHouseCandidates()
+
+    console.log('#fullHouse', fullHouse)
+    commit('$setFullHouseCards', fullHouse)
+    commit('$setPileLoaded', pile.success)
+    return pile
   }
 }

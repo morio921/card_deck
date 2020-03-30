@@ -13,7 +13,10 @@ const state = {
   menuList: [],
   pileName: '',
   pileAdded: false,
-  rotationCard: ''
+  rotationCard: '',
+  orderedCards: [],
+  fullHouseCards: [],
+  pileLoaded: false
 }
 
 const debug = process.env.NODE_ENV !== 'production'

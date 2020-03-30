@@ -13,16 +13,20 @@ Vue.mixin({
     },
 
     ...mapState([
+      'pileName',
       'pileAdded',
       'rotationCard',
-      'orderedCards'
+      'orderedCards',
+      'fullHouseCards',
+      'pileLoaded'
     ])
   },
 
   methods: {
     ...mapActions([
       '$addNewDeck',
-      '$addToPile'
+      '$addToPile',
+      '$getPile'
     ]),
 
     $triggerSidenav () {

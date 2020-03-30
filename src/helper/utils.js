@@ -39,6 +39,22 @@ export default {
     return sortResultBySuit === 0 ? compareCode(firstCard.value, secondCard.value, rotationCard.value, initialValues) : sortResultBySuit
   })),
 
+  // check and get if Full House pattern
+  isFullHouse: (candidate) => {
+    const candidateSet = candidate.reduce((acc, code) => {
+      const value = getCardDetail(code).value
+      if (acc[value]) {
+        acc[value]++
+      } else {
+        acc[value] = 1
+      }
+      return acc
+    }, {})
+
+    // return full house pattern
+    return [3, 2].every((count) => Object.values(candidateSet).includes(count))
+  },
+
   resMsg (res) {
     let key = {
       zh: 'Chinese',

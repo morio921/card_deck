@@ -16,5 +16,9 @@ export default {
   addToPile (deckId, cardValues) {
     const query = cardValues.join()
     return $ajax.get(`${apiUrl}/deck/${deckId}/pile/pile_${deckId}/add/?cards=${query}`)
+  },
+
+  getPile (deckId, pileName) {
+    return $ajax.get(`${apiUrl}/deck/${deckId}/pile/${pileName}/list`)
   }
 }
