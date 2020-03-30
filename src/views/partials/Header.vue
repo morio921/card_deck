@@ -1,6 +1,7 @@
 <template>
   <div class="header">
     <h1 v-if="isCards" class="uppercase-text">Cards</h1>
+    <h1 v-if="isItem">Ordered Pile</h1>
   </div>
 </template>
 
@@ -11,6 +12,9 @@ export default {
   computed: {
     isCards() {
       return this.$route.path === '/deck/new'
+    },
+    isItem() {
+      return this.$route.path.includes('deck') && !!this.$route.params.id
     }
   }
 }
@@ -43,4 +47,3 @@ export default {
   }
 }
 </style>
-

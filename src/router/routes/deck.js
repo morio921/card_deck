@@ -9,6 +9,11 @@ export default [{
       path: 'new',
       fullpath: '/deck/new',
       component: resolve => require(['@views/deck/New'], resolve)
+    },
+    {
+      path: ':id',
+      fullpath: '/deck/:id',
+      component: resolve => require(['@views/deck/Pile'], resolve)
     }
   ]
 }]
