@@ -1,4 +1,6 @@
 import 'babel-polyfill'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
 import * as Vue from 'vue/dist/vue.min.js'
 import './global.js'
 import './mixins/globalMixin.js'
@@ -14,6 +16,11 @@ Vue.config.silent = process.env.NODE_ENV === 'production'
 
 /* Set this to false to prevent the production tip on Vue startup(2.2.0+). */
 Vue.config.productionTip = process.env.NODE_ENV !== 'production'
+
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 
 /* eslint-disable no-new */
 new Vue({
