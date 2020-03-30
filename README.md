@@ -55,8 +55,11 @@ This project is based on Vue boilerpate Starter
 #### With [Docker Compose](https://docs.docker.com/compose/)
 
 ``` bash
-# install dependencies
+# install dependencies by using npm
 docker-compose run app npm install
+
+# install dependencies by using yarn
+docker-compose run app yarn
 
 # serve in dev mode, with hot reload at localhost:8181
 docker-compose up
