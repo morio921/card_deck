@@ -13,6 +13,7 @@ export default {
 
   async $addNewDeck() {
     const res = await $apis.deck.addNewDeck()
+    console.log('res:', res)
     return res
   },
 

@@ -6,16 +6,11 @@ function requestHandle (params) {
   let defer = $q.defer()
   axios(params)
     .then(res => {
-      if (res && (res.unauthorized || res.statusCode === 401)) {
-        window.location.href = '/login'
-      }
-      if (res.type === 'application/x-msdownload') {
-        redirectToIframe(res.request.responseURL)
-      } else if (res.data) {
+      if (res.data) {
         if (res.data.success) {
-          defer.resolve(res.data.value)
+          defer.resolve(res.data)
         } else {
-          defer.reject(res.data.message)
+          defer.reject('Error occurred in api call')
         }
       } else {
         defer.reject()
@@ -25,16 +20,6 @@ function requestHandle (params) {
     })
 
   return defer.promise
-}
-
-function redirectToIframe (url) {
-  let iframe = document.createElement('iframe')
-  iframe.style.display = 'none'
-  iframe.src = url
-  iframe.onload = function () {
-    document.body.removeChild(iframe)
-  }
-  document.body.appendChild(iframe)
 }
 
 export default {

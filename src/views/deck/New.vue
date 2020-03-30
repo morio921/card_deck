@@ -40,6 +40,7 @@ import * as c from '@helper/constants'
 
 export default {
   name: 'New',
+
   components: {
     CardInput
   },
